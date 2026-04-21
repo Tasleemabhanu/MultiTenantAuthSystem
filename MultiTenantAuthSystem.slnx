@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MultiTenantAuthSystem.Tests/MultiTenantAuthSystem.Tests.csproj" />
+  <Project Path="MultiTenantAuthSystem/MultiTenantAuthSystem.csproj" />
+</Solution>
