@@ -95,6 +95,19 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins(
+            "https://medi-access-hospital-rbac.vercel.app",
+            "https://medi-access-hospital-rbac-h7qu0okhk-tasleemabhanus-projects.vercel.app",
+            "http://localhost:3000"
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -150,6 +163,7 @@ app.UseMiddleware<SecurityHeadersMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
